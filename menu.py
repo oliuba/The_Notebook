@@ -47,7 +47,7 @@ Notebook Menu
         if not notes:
             notes = self.notebook.notes
         for note in notes:
-            print("{0}: {1}\n{2}".format(note.id, note.tags, note.memo))
+            print("{0}: {1}\n{2}".format(note.note_id, note.tags, note.memo))
 
 
     def search_notes(self):
@@ -55,7 +55,10 @@ Notebook Menu
         or error message if there are no such memos.'''
         filter_str = input("Search for: ")
         notes = self.notebook.search(filter_str)
-        self.show_notes(notes) if notes else print('There are no memos with such filter.')
+        if notes:
+            self.show_notes(notes)
+        else:
+            print('There are no notes with such filter.')
 
 
     def add_note(self):
